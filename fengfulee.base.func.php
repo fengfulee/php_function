@@ -55,5 +55,31 @@
 		return ((float)$usec+(float)$sec);
 	}
 
+#	字节格式化...
+#	$number 表示字节大小
+#	$precision 表示精度.
+	function byte_format($number,$precision){
+		$size = array('B','KB','MB','GB','TB','PB');		
+		$offset = 0;
+		while($number > 1024 ){
+			$number/=1024;
+			$offset ++;
+		}
+		return round($number,$precision)." ".$size[$offset];
+	}
+#	测试..
+/*
+	$n = byte_format(1000000,2);
+	echo $n;
+	result:976.56 KB
+*/
 
+
+
+
+
+
+
+
+############################
 ?>
