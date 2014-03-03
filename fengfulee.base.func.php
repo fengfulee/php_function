@@ -75,7 +75,19 @@
 */
 
 
-
+#	判断是否是AJax方式提交的.
+#	这里我们要考虑一点,Ajax提交的作用是什么:
+#	个人见解,主要是用于不同方式验证返回数据不同.
+	function isAjax(){
+		if(isset('HTTP_X_REQUESTED_WITH')){
+			if('xmlhttprequest'==strtolower('HTTP_X_REQUESTED_WITH'))
+				return true;
+		}
+		# 还有一种情况是:如果用户在表单中添加了某个字段来标明这是Ajax方式提交.
+		if(!empty($_POST['some_var']))|| !empty($_GET['some_var'])
+			return true;
+		return false;
+	}
 
 
 
