@@ -6,8 +6,12 @@
 		static $require_array = array();
 		#	静态数组保存.
 		if(!isset($require_array[$filepath])){
-			require $filepath;
-			$require_array[$filepath] = TRUE;
+			if(file_exists($filepath)){
+				require $filepath;
+				$require_array[$filepath] = TRUE;
+			}else{
+				return false;
+			}
 		}else{
 			$require_array[$filepath] = FALSE;
 		}
@@ -26,5 +30,26 @@
 		}
 
 	}
+
+#	批量导入文件,并且使用 static_require()方法...
+#	这里要求 $array 是数组,
+	function static_require_array($array){
+		if(!is_array($array)){
+			static_require($array);
+			return;
+		}else{
+			foreach($array as $key => $value){
+				if(is_array($value))
+					static_require_array($value);
+				
+				static_require($value);
+			}
+		}
+		
+	}
+
+##	这里需要注意一点.每次调用static_require函数的时候,静态变量时不会每次进行初始化的
+#	只在第一次进行初始化,因为多次调用的函数共享同一个静态变量
+#	
 
 ?>
