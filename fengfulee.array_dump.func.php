@@ -36,6 +36,38 @@
 		'four' => 4
 	);
 
-	dump($arr);
+#	dump($arr);
 	
+#下面的这个函数是array_map函数..
+	function showSpanish($m,$n){
+		return "The number $m is called $n in Spanish";
+	}	
+
+	#这个函数用来将两个数组进行关联...感觉不错哦...
+	function mapSpanish($m,$n){
+		#这里要注意了.这里其实定义了一个匿名数组...
+		#其实可以这样写的:
+		#	$arr = array();
+		#	$arr[$m] = $n;	可能这样写感觉会更好一点吧....
+		return (array($m=>$n));
+	}
+	
+#测试方法..
+	$a = array(1,2,3,4,5);
+	$b = array('uno','dos','tres','cuatro','cinco');
+	$c = array_map("showSpanish",$a,$b);
+	$d = array_map('mapSpanish',$a,$b);
+	print_r($c);
+	print_r($d);
+
+
+	
+
+
+
+
+
+
+
+
 ?>
