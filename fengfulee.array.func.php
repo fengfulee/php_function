@@ -63,6 +63,40 @@
 #下面写一个函数,是有关 implode 同名函数 join的一个拓展,
 #编写二维的数组的组合..
 	
+	#separator  表示一个数组,用来分割一维和多维的分隔符...
+	function joinMultiArray($separator,$arr,$level=0){
+		#这里要判断一下,$separaotor 是否是数组....
+		if(!is_array($separator)) return joinMultiArray(array($separtor,$arr));
+		#这里如果不是数组,则直接返回结果...
+		if(!is_array($arr)) return $arr;
+		$res = array();
+		foreach($arr as $key =>$value)	{
+			if(is_array($value)){
+				$res[] = joinMultiArray($separator,$value,$level+1);			
+			}else{
+				$res[] = $value;	
+			}
+		}
+		return join(isset($separator[$level])?$separator[$level]:'',$res);	
+	}
+####################	test	##################
+	$arr1 = array(array(5,9),array(3,4),array(2,6));
+	$arr2 = array(1,3,56,array(2,5,6));
+	$arr3 = array(
+			'a'=>array(1,2,3,array('a','b','c')),
+			'b'=>2,
+			'c'=> array(2,5,6)
+		);
+	$separator = array(',','_');
+	print joinMultiArray($separator,$arr1);
+	echo "\n";
+	print joinMultiArray($separator,$arr2);
+	echo "\n";
+	$separator = array(',','_','*');
+	print joinMultiArray($separator,$arr3);
+	echo "\n"
+
+
 
 
 
