@@ -53,14 +53,15 @@
 	}
 	
 #测试方法..
-	$a = array(1,2,3,4,5);
-	$b = array('uno','dos','tres','cuatro','cinco');
-	$c = array_map("showSpanish",$a,$b);
-	$d = array_map('mapSpanish',$a,$b);
-	print_r($c);
-	print_r($d);
+	// $a = array(1,2,3,4,5);
+	// $b = array('uno','dos','tres','cuatro','cinco');
+	// $c = array_map("showSpanish",$a,$b);
+	// $d = array_map('mapSpanish',$a,$b);
+	// print_r($c);
+	// print_r($d);
 
-
+#下面写一个函数,是有关 implode 同名函数 join的一个拓展,
+#编写二维的数组的组合..
 	
 
 
