@@ -90,7 +90,22 @@
 	}
 
 
-
+#	这里添加一个函数,covert local string into float number....
+	function str2num($str){
+		if(strpos($str,'.')<strpos(str,',')){
+			#如果'.' 在 ','前面,默认将'.'去掉...
+			#然后将','替换成'.\
+			$str = str_replace('.','',$str);
+			$str = strtr($str,',','.');
+		}else{
+			#否则的话,将','替换成空,
+			$str = str_replace(',','',$str);
+		}
+		return (float)$str;
+		
+	}
+#	str2num('25,01');//25.01
+#	str2num('2.5,01');//25.01
 
 
 ############################
